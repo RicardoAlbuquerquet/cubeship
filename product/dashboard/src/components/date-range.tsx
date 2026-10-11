@@ -141,12 +141,14 @@ export function DateRangePicker({
         }
       />
       {/* The presets sit above the calendar on a phone: side by side the two
-          are wider than the screen. */}
+          are wider than the screen. The switch is at 761px, not at `sm`, because
+          up to 760px the days grow to 44px (dashboard.css), and seven of them
+          do not fit in the 256px column the desktop calendar has. */}
       <PopoverContent
         align="end"
-        className="flex max-h-(--available-height) max-w-[calc(100vw-1rem)] flex-col overflow-y-auto p-0 sm:max-w-none sm:flex-row"
+        className="flex max-h-(--available-height) max-w-[calc(100vw-1rem)] flex-col overflow-y-auto p-0 min-[761px]:max-w-none min-[761px]:flex-row"
       >
-        <div className="flex w-full flex-row flex-wrap border-border border-b p-1 sm:w-36 sm:flex-col sm:border-r sm:border-b-0">
+        <div className="flex w-full flex-row flex-wrap border-border border-b p-1 min-[761px]:w-36 min-[761px]:flex-col min-[761px]:border-r min-[761px]:border-b-0">
           {PRESETS.map((p) => (
             <button
               key={p.label}
@@ -163,7 +165,7 @@ export function DateRangePicker({
               {p.label}
             </button>
           ))}
-          <div className="my-1 hidden border-border border-t sm:block" />
+          <div className="my-1 hidden border-border border-t min-[761px]:block" />
           <button
             type="button"
             onClick={() => {
@@ -179,7 +181,7 @@ export function DateRangePicker({
           </button>
         </div>
 
-        <div className="w-full p-3 sm:w-64">
+        <div className="w-full p-3 min-[761px]:w-64">
           <div className="mb-2 flex items-center justify-between">
             <button
               type="button"
